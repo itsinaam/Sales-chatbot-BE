@@ -303,28 +303,5 @@ async def chat_stream(message: str, checkpoint_id: Optional[str] = Query(None)):
         media_type="text/event-stream"
     )
     
-class PDFRequest(BaseModel):
-    summary: str
 
-    
-@app.post("/generate_pdf")
-async def generate_pdf(request: PDFRequest):
-    summary = request.summary
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
-    pdf.set_font("Arial", size=12)
-
-    # Clean text for line breaks
-    for line in summary.split('\n'):
-        pdf.multi_cell(0, 10, line)
-
-    # Save to temp file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-        pdf.output(tmp_file.name)
-        return FileResponse(
-            path=tmp_file.name,
-            filename="project-summary.pdf",
-            media_type="application/pdf"
-        )
 
