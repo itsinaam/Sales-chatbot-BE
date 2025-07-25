@@ -3,6 +3,7 @@
     "builds": [
         {
             "src": "./app.py",
+            "runtime": "python3.11",
             "use": "@vercel/python"
         }
     ],
