@@ -32,7 +32,10 @@ search_tool = TavilySearchResults(
 tools = [search_tool]
 
 # Set the API key as environment variable
-llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0.5)
+llm = ChatGroq(
+    model="meta-llama/llama-4-scout-17b-16e-instruct",
+    temperature=0.5
+)
 
 # llm = ChatOpenAI(model="gpt-4o")
 
